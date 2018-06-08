@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+
+import Main from "./Components/Main";
 import Header from "./Components/Header";
 import "./App.css";
 
@@ -13,7 +15,8 @@ class App extends Component {
 
   generatePromises = () => {
     const urlArray = [];
-    const baseUrl = "https://api.coinmarketcap.com/v2/ticker/?limit=100&structure=array&sort=rank";
+    const baseUrl =
+      "https://api.coinmarketcap.com/v2/ticker/?limit=100&structure=array&sort=rank";
 
     for (let i = 0; i < 16; i++) {
       urlArray.push(baseUrl + `&start=${i * 100 + 1}`);
@@ -39,7 +42,12 @@ class App extends Component {
   }
 
   render() {
-    return <Header />;
+    return (
+      <div>
+        <Header />
+        <Main data={this.state.data} />
+      </div>
+    );
   }
 }
 
