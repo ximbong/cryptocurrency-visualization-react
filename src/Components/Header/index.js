@@ -1,31 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
+
 import Input from "../Input";
 import Button from "../Button";
 
-class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      input: ""
-    };
-  }
-  handleChange = value => {
-    this.setState({
-      input: value
-    });
-  };
-  render() {
-    return (
-      <div className="buttons">
-        <Input onChange={this.handleChange} />
-        <div className="sort-buttons">
-          <Button id="name" />
-          <Button id="price" />
-          <Button id="name" />
-        </div>
+const Header = ({ handleSort, handleInput, resetIndex }) => {
+  return (
+    <div className="buttons">
+      <Input handleInput={handleInput} resetIndex={resetIndex} />
+      <div className="sort-buttons">
+        <Button id="name" handleSort={handleSort} resetIndex={resetIndex} />
+        <Button id="price" handleSort={handleSort} resetIndex={resetIndex} />
+        <Button id="rank" handleSort={handleSort} resetIndex={resetIndex} />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Header;
