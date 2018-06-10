@@ -9,9 +9,35 @@ class App extends Component {
     super(props);
     this.state = {
       data: [],
-      input: ""
+      input: "",
+      sortType: "rank",
+      lastIndex: 100 //lastIndex describes the number of coins on the page
     };
   }
+
+  handleInput = e => {
+    this.setState({
+      input: e.target.value
+    });
+  };
+
+  handleSort = e => {
+    this.setState({
+      sortType: e.target.id
+    });
+  };
+
+  resetIndex = () => {
+    this.setState({
+      lastIndex: 100
+    });
+  };
+
+  increaseIndex = () => {
+    this.setState({
+      lastIndex: this.state.lastIndex + 100
+    });
+  };
 
   generatePromises = () => {
     const urlArray = [];
@@ -19,7 +45,8 @@ class App extends Component {
       "https://api.coinmarketcap.com/v2/ticker/?limit=100&structure=array&sort=rank";
 
     for (let i = 0; i < 16; i++) {
-      urlArray.push(baseUrl + `&start=${i * 100 + 1}`);
+      //generate 1600 coins
+      urlArray.push(baseUrl + `&start=${i * 100 + 1}`); //customize URLs
     }
 
     return urlArray.map(url => fetch(url));
@@ -44,8 +71,18 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header />
-        <Main data={this.state.data} />
+        <Header
+          handleSort={this.handleSort}
+          handleInput={this.handleInput}
+          resetIndex={this.resetIndex}
+        />
+        <Main
+          increaseIndex={this.increaseIndex}
+          dataArray={this.state.data}
+          sortType={this.state.sortType}
+          inputValue={this.state.input}
+          lastIndex={this.state.lastIndex}
+        />
       </div>
     );
   }
