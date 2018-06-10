@@ -6,7 +6,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-scripts": "1.1.4",
-    "homepage": "https://ximbong91023.github.io/cryptocurrency-visualization-react",
+    "homepage": "https://ximbong91023.github.io/cryptocurrency-visualization-react"
   },
   "scripts": {
     "start": "react-scripts start",
