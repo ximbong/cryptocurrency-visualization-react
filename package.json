@@ -1,12 +1,12 @@
 {
-  "homepage": "http://ximbong91023.github.io/cryptocurrency-visualization-react",
   "name": "crypto-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "homepage": "https://ximbong91023.github.io/cryptocurrency-visualization-react",
   },
   "scripts": {
     "start": "react-scripts start",
