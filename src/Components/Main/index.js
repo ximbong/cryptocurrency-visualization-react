@@ -15,6 +15,7 @@ class Main extends Component {
         break;
       }
       case "name": {
+        // eslint-disable-next-line
         renderData = array.sort(function(a, b) {
           const nameA = a.name.toUpperCase();
           const nameB = b.name.toUpperCase();
@@ -45,17 +46,20 @@ class Main extends Component {
   };
 
   render() {
-    const { dataArray, inputValue, sortType } = this.props;
+    const { dataArray, inputValue, sortType, lastIndex } = this.props;
 
     const renderData = this.sort(dataArray, sortType);
     const filterArray = this.filter(renderData, inputValue);
 
     const listCoins = filterArray
-      .slice(0, this.props.lastIndex)
-      .map((e, i) => <Coins data={e} key={i} />);
+      .slice(0, lastIndex)
+      .map(e => <Coins data={e} key={e.id} />);
 
     return (
       <div className="container">
+        <div className="title">
+          There are {filterArray.length} coin(s) in the list
+        </div>
         {listCoins}
         {filterArray.length > this.props.lastIndex && (
           <LoadMoreButton increaseIndex={this.props.increaseIndex} />
