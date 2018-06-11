@@ -11,7 +11,8 @@ class App extends Component {
       data: [],
       input: "",
       sortType: "rank",
-      lastIndex: 100 //lastIndex describes the number of coins on the page
+      lastIndex: 100, //lastIndex describes the number of coins on the page
+      loader: true
     };
   }
 
@@ -64,7 +65,12 @@ class App extends Component {
         );
       })
       .then(response => {
-        this.setState({ data: response });
+        setTimeout(() => {
+          this.setState({
+            data: response,
+            loader: false
+          });
+        }, 2000);
       });
   }
 
@@ -78,6 +84,7 @@ class App extends Component {
         />
         <Main
           increaseIndex={this.increaseIndex}
+          loader={this.state.loader}
           dataArray={this.state.data}
           sortType={this.state.sortType}
           inputValue={this.state.input}
