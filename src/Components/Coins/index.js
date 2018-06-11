@@ -1,5 +1,7 @@
 import React from "react";
 
+import Percentage from "../Percentage"
+
 const Coins = props => {
   const baseImgUrl = "https://s2.coinmarketcap.com/static/img/coins/16x16/";
   const {
@@ -23,15 +25,9 @@ const Coins = props => {
         Price: <span>{price}$</span>
       </div>
       <div className="price_change">
-        <div className="percentage_change_1h">
-          Change last hour: <span>{percent_change_1h}%</span>
-        </div>
-        <div className="percentage_change_24h">
-          Change last day: <span>{percent_change_24h}%</span>
-        </div>
-        <div className="percentage_change_7d">
-          Change last week: <span>{percent_change_7d}%</span>
-        </div>
+        <Percentage percent={percent_change_1h} name="hour" />
+        <Percentage percent={percent_change_24h} name="day" />
+        <Percentage percent={percent_change_7d} name="week" />
       </div>
     </div>
   );
