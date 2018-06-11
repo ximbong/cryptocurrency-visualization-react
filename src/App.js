@@ -35,7 +35,7 @@ class App extends Component {
 
   increaseIndex = () => {
     this.setState(prevState => ({
-      counter: prevState.lastIndex + 100
+      lastIndex: prevState.lastIndex + 100
     }));
   };
 
