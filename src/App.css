@@ -87,6 +87,10 @@ a {
 .load-more {
   display: flex;
   justify-content: center;
+}
+
+.load-more,
+.title {
   font-size: 90%;
   grid-column: 1/-1;
 }
