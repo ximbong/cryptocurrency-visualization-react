@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 
-import Main from "./Components/Main";
 import Header from "./Components/Header";
+import Coins from "./Components/Coins";
+import Loader from "./Components/Loader";
+import LoadMoreButton from "./Components/LoadMoreButton";
+import Title from "./Components/Title";
 import "./App.css";
 
 class App extends Component {
@@ -53,6 +56,47 @@ class App extends Component {
     return urlArray.map(url => fetch(url));
   };
 
+  sort = (array, category) => {
+    let renderData = [...array];
+
+    switch (category) {
+      case "price": {
+        renderData.sort(function(a, b) {
+          return b.quotes.USD.price - a.quotes.USD.price;
+        });
+        break;
+      }
+      case "name": {
+        // eslint-disable-next-line
+        renderData.sort(function(a, b) {
+          const nameA = a.name.toUpperCase();
+          const nameB = b.name.toUpperCase();
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+        });
+        break;
+      }
+      default: {
+        renderData.sort(function(a, b) {
+          return a.rank - b.rank;
+        });
+      }
+    }
+
+    return renderData;
+  };
+
+  filter = (array, value) => {
+    const filterArray = array.filter(function(element) {
+      return element.name.toLowerCase().includes(value.toLowerCase());
+    });
+    return filterArray;
+  };
+
   componentDidMount() {
     Promise.all(this.generatePromises())
       .then(response => {
@@ -75,6 +119,15 @@ class App extends Component {
   }
 
   render() {
+    const { data, input, sortType, lastIndex, loader } = this.state;
+
+    const renderData = this.sort(data, sortType);
+    const filterArray = this.filter(renderData, input);
+
+    const listCoins = filterArray
+      .slice(0, lastIndex)
+      .map((e, i) => <Coins data={e} key={i} />);
+
     return (
       <div>
         <Header
@@ -82,14 +135,14 @@ class App extends Component {
           handleInput={this.handleInput}
           resetIndex={this.resetIndex}
         />
-        <Main
-          increaseIndex={this.increaseIndex}
-          loader={this.state.loader}
-          dataArray={this.state.data}
-          sortType={this.state.sortType}
-          inputValue={this.state.input}
-          lastIndex={this.state.lastIndex}
-        />
+        <div className="container">
+          {loader && <Loader />}
+          <Title length={filterArray.length} />
+          {listCoins}
+          {filterArray.length > lastIndex && (
+            <LoadMoreButton increaseIndex={this.increaseIndex} />
+          )}
+        </div>
       </div>
     );
   }
