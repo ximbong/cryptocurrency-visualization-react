@@ -1,6 +1,6 @@
 import React from "react";
 
-import Percentage from "../Percentage"
+import Percentage from "../Percentage";
 
 const Coins = props => {
   const baseImgUrl = "https://s2.coinmarketcap.com/static/img/coins/16x16/";

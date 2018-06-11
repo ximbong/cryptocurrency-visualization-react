@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import LoadMoreButton from "../LoadMoreButton";
 import Coins from "../Coins";
+import Loader from "../Loader";
 
 class Main extends Component {
   sort = (array, category) => {
@@ -57,6 +58,7 @@ class Main extends Component {
 
     return (
       <div className="container">
+        {this.props.loader && <Loader />}
         <div className="title">
           There are {filterArray.length} coin(s) in the list
         </div>
