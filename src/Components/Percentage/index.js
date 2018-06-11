@@ -7,13 +7,13 @@ const Percentage = ({ percent, name }) => {
     element = <span>0%</span>;
   } else if (percent > 0) {
     element = (
-      <span class="increase">
+      <span className="increase">
         {percent}% <i className="fa fa-caret-up" />
       </span>
     );
   } else if (percent < 0) {
     element = (
-      <span class="decrease">
+      <span className="decrease">
         {percent}% <i className="fa fa-caret-down" />
       </span>
     );
