@@ -20,7 +20,7 @@ const Percentage = ({ percent, name }) => {
   }
   return (
     <div>
-      <span>Change last</span>
+      <span>Change last </span>
       <span>
         {name}: {element}
       </span>
