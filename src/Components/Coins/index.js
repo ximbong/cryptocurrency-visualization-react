@@ -19,10 +19,12 @@ const Coins = props => {
         {name}
       </div>
       <div className="rank">
-        Rank: <span>{rank}</span>
+        <span>Rank: </span>
+        <span>{rank}</span>
       </div>
       <div className="price">
-        Price: <span>{price}$</span>
+        <span>Price: </span>
+        <span>{price}$</span>
       </div>
       <div className="price_change">
         <Percentage percent={percent_change_1h} name="hour" />

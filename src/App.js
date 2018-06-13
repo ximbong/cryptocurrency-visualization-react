@@ -135,13 +135,16 @@ class App extends Component {
           handleInput={this.handleInput}
           resetIndex={this.resetIndex}
         />
-        <div className="container">
+
+        <div>
           {loader && <Loader />}
           <Title length={filterArray.length} />
-          {listCoins}
-          {filterArray.length > lastIndex && (
-            <LoadMoreButton increaseIndex={this.increaseIndex} />
-          )}
+          <div className="container">
+            {listCoins}
+            {filterArray.length > lastIndex && (
+              <LoadMoreButton increaseIndex={this.increaseIndex} />
+            )}
+          </div>
         </div>
       </div>
     );
