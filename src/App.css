@@ -93,10 +93,14 @@ a {
   justify-content: center;
 }
 
-.load-more,
-.title {
+.load-more {
   font-size: 90%;
   grid-column: 1/-1;
+}
+
+.title {
+  font-size: 90%;
+  padding-left: 10%;
 }
 
 .load-more:hover {
