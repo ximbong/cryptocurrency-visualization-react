@@ -1,8 +1,12 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 
 import Percentage from "../Percentage";
 
-class Coins extends PureComponent {
+class Coins extends Component {
+  shouldComponentUpdate(nextProps) {
+    if (this.props.data.id === nextProps.data.id) return false;
+    return true;
+  }
   render() {
     const baseImgUrl = "https://s2.coinmarketcap.com/static/img/coins/32x32/";
     const {
